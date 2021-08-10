@@ -7,7 +7,7 @@
 }
 
 html{
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 10px;
 }
 
@@ -368,26 +368,18 @@ header{
     text-align: justify;
 }
 
-.contenedor-boton-emprendimientos{
-    position: absolute;
-    top: 530px;
-    width: 100%;
-    height: 60px;
-}
-
 .boton{
+
     text-decoration: none;
     font-size:18px;
     padding: 15px;
-    position: absolute;
-    text-align: justify;
     color: black;
     background-color: #fcaf3b;
     text-transform: uppercase;
 }
 
 .boton-position{
-    right: 25px;
+    top: 75%;
 }
 
 .boton:hover{
@@ -395,35 +387,6 @@ header{
     color: black;
 }
 
-.contenedor-principal-horarios-atencion{
-    width: 100%;
-    height: 450px;
-    background-color: #ededed;
-}
-
-.contenedor-principal-horarios-atencion h1,.contenedor-principal-info h1{
-    padding: 25px 0 0 25px;
-}
-
-/* Padre Info */
-.contenedor-principal-info{
-    position: relative;
-    width: 100%;
-    height: 350px;
-}
-/* Hijo Info */
-.contenedor-info{
-    position: absolute;    
-    width: 30%;
-    height: auto;
-    top: 100px;
-    right: 50px;
-}
-
-.contenedor-info p{
-    font-size:19px;
-    text-align: justify;
-}
 
 .contenedor-boton-info{
     position: absolute;
@@ -453,31 +416,53 @@ footer{
     text-align: center;
 }
 
-.salto{
-    width: 100%;
-    height: 200vh;
-}
-
 /* Cards Inicio */
-
-.contenedor-carousel{
+.contenedor-info{
     position: relative;
+    width: 30%;
+    height: 350px;
+    background-color: white;
+    top: 100px;
+    left: 15%;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align:center;    
+}
+
+.contenedor-info h1{
+    font-size: 30px;
+}
+
+.contenedor-info p{
+    font-size:19px;
+    text-align: justify;
+}
+
+.contenedor-info > *{
+    padding-top: 25px;
+    margin: 0 auto;
+}
+
+.contenedor-info >a{
+    padding: 15px;
+}
+
+.input-time{
+    font-size: 15px;
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.contenedor-time{
     width: 100%;
-    top: 16rem;
+    margin-bottom: 25px;
 }
 
-.contenedor-carousel::after{
-    content: '';
-    width: inherit;
-    height: inherit;
-    position: absolute;
-    top: 16rem;
-    left: 0;
-    background-color: rgba(0,0,0,.5);
+.contenedor-time > input{
+    display: inline-block;
 }
-
-
-
 /* Responsive */
 @media(max-width: 768px){    
     .contenedor-inicio{
