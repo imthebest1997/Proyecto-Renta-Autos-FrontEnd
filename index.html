@@ -5,9 +5,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap-css/bootstrap.min.css">
+    <script src="js/bootstrap-js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    
+    <header id="navbar">
+        <div class="contenedor-nav-bar">
+            <nav class="nav">                
+                <a href="#">
+                    <img src="img/calero's car rental.png" class="logo" alt="Logo">
+                </a>
+
+                <button class="nav-toggle" aria-label="Abrir menú " id="bars">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="nav-list">
+                    <li class="nav-menu-item">
+                        <a href="index.html" class="nav-link">Inicio</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="#" class="nav-link">Catalogo</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="#" class="nav-link">Nosotros</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="#" class="nav-link">Contacto</a>
+                    </li>
+                    <li class="nav-menu-item">
+                        <a href="#" class="nav-link">Rentar auto</a>
+                    </li>
+                </ul>
+
+                <a href="#" id="nav-cta">Sign In</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="contenedor-carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="img/auto clasico.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/carro deportivo.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/mercedes.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>    
+        </div>
+    </section>
+
+
+
+    <script src="/js/script-index.js"></script>
 </body>
 </html>
