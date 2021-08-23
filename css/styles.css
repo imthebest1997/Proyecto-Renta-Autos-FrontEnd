@@ -1,0 +1,15 @@
+.watas{
+    border: 1px solid red;
+}
+
+.image {
+    height: 500px;
+    width: 590px;
+    display: flex;
+    align-items: center;/*Alineacion vertical*/
+}
+
+.image img{
+    width: 100%;
+}
+

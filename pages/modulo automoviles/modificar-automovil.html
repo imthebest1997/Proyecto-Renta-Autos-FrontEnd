@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo Automoviles - Modificaciones</title>
+    <link href="../../css/bootstrap-css/bootstrap.min.css" rel="stylesheet">  
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
+</head>
+<body>
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Calero's Rental Car</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <div class="navbar-nav">
+          <div class="nav-item text-nowrap">
+            <a class="nav-link px-3" href="#">Sign out</a>
+          </div>
+        </div>
+      </header>
+      
+      <div class="container-fluid">
+        <div class="row">
+          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="../../index.html" id="home">
+                    <span data-feather="home"></span>
+                    Dashboard
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="users"></span>
+                    Empleados
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="../automoviles.html">
+                    <ion-icon name="car-sport-outline"></ion-icon>
+                    Automoviles
+                  </a>
+                </li>
+      
+                <li class="nav-item">
+                  <a class="nav-link" href="../clientes.html">
+                    <span data-feather="users"></span>
+                    Clientes
+                  </a>
+                </li>
+      
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="package"></span>
+                    Accesorios
+                  </a>
+                </li>
+      
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="tool"></span>
+                    Manteniemientos
+                  </a>
+                </li>
+      
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="bar-chart-2"></span>
+                    Reports
+                  </a>
+                </li>
+      
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="layers"></span>
+                    Integrations
+                  </a>
+                </li>
+              </ul>
+      
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Saved reports</span>
+                <a class="link-secondary" href="#" aria-label="Add a new report">
+                  <span data-feather="plus-circle"></span>
+                </a>
+              </h6>
+              <ul class="nav flex-column mb-2">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Current month
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Last quarter
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Social engagement
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file-text"></span>
+                    Year-end sale
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Modificaci&oacute;n de Automoviles</h1>
+            </div>
+            
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-3">
+                        <form>
+                          <div class="mb-3">
+                            <label for="txtNombreAutomovil" class="form-label"><b>Nombre del auto: </b></label>
+                            <input type="text" class="form-control" id="txtNombreAutomovil">
+                          </div>
+    
+                          <div class="mb-3">
+                            <label for="txtTipoAuto" class="form-label"><b>Tipo de automovil: </b></label>
+                            <select name="txtTipoAuto" id="txtTipoAuto" class="form-control">
+                              <option value="deportivo" selected>Deportivo</option>
+                              <option value="4x4">4x4</option>
+                            </select>
+                          </div>
+    
+                          <div class="mb-3">
+                            <label for="txtNumPlacaAutomovil" class="form-label"><b># de placa: </b></label>
+                            <input type="text" class="form-control" id="txtNumPlacaAutomovil">
+                          </div>
+    
+                          <div class="mb-3">
+                            <label for="txtMarcaAutomovil" class="form-label"><b>Marca y modelo: </b></label>
+                            <input type="text" class="form-control" id="txtMarcaAutomovil">
+                          </div>
+    
+                          <div class="mb-3">
+                            <label for="txtColorAutomovil" class="form-label"><b>Color: </b></label>
+                            <input type="text" class="form-control" id="txtColorAutomovil">
+                          </div>
+    
+                          <div class="row g-2">
+                            <label for=""><b>Disponibilidad:</b></label>
+                            <div class="mb-3 ml-5 form-check col-auto">
+                              <input type="radio" class="form-check-input" id="disponible" name="disponibilidad" value="1">
+                              <label class="form-check-label" for="disponible">Disponible</label>  
+                            </div>  
+    
+                            <div class="mb-3 form-check col-auto">
+                              <input type="radio" class="form-check-input" id="noDisponible" name="disponibilidad" value="0">
+                              <label class="form-check-label" for="noDisponible">No disponible</label>  
+                            </div>  
+                          </div>
+                          <button type="submit" class="btn btn-primary">Registrar automovil</button>
+                        </form>
+                      </div>
+
+                      <div class = "col-9">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Nombre del automovil</th>
+                                  <th scope="col"># de Placa</th>
+                                  <th scope="col">Color</th>
+                                  <th scope="col">Disponibilidad</th>
+                                </tr>
+                              </thead>
+                              <tbody>                              
+                              </tbody>
+                            </table>
+                          </div>        
+                    </div>   
+
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+      
+    
+
+    <script src="../../js/bootstrap-js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/script-modulos.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</body>
+</html>
