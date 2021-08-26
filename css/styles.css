@@ -1,6 +1,3 @@
-.watas{
-    border: 1px solid red;
-}
 
 .image {
     height: 500px;
@@ -13,3 +10,6 @@
     width: 100%;
 }
 
+.btn-regresar{
+    text-align: end;
+}
