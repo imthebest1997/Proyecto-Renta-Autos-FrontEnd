@@ -1,9 +1,8 @@
 function serializeForm(){        
     let automovil = {
-        "nombre" : $("#txtNombreAutomovil").val(),
+        "marca" : $("#txtMarcaAutomovil").val(),       
         "tipoAuto" : $("#txtTipoAuto").val(),
         "numPlaca" : $("#txtNumPlacaAutomovil").val(), 
-        "marca" : $("#txtMarcaAutomovil").val(),       
         "color" : $("#txtColorAutomovil").val(),
         "disponibilidad" : 1,
     };
@@ -60,13 +59,12 @@ $(function() {
 
 
 function validarCampos(){
-    let nombre = document.getElementById("txtNombreAutomovil").value;
     let numPlaca = document.getElementById("txtNumPlacaAutomovil").value;
     let marca = document.getElementById("txtMarcaAutomovil").value;
     let color = document.getElementById("txtColorAutomovil").value;
     let bandera = false;
 
-    if(nombre == "" || numPlaca == "" || marca == "" || color == ""){
+    if(numPlaca == "" || marca == "" || color == ""){
         bandera = true;
         return bandera;
     }

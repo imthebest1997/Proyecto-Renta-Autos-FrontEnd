@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Mantenimiento</title>
-    <link href="../css/bootstrap-css/bootstrap.min.css" rel="stylesheet">  
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <title>Modulo Automoviles - Modificaciones</title>
+    <link href="../../css/bootstrap-css/bootstrap.min.css" rel="stylesheet">  
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="automoviles.html">
+                  <a class="nav-link active" href="automoviles.html">
                     <ion-icon name="car-sport-outline"></ion-icon>
                     Automoviles
                   </a>
@@ -63,14 +63,14 @@
                 </li>
       
                 <li class="nav-item">
-                  <a class="nav-link active" href="mantenimientos.html">
+                  <a class="nav-link" href="mantenimientos.html">
                     <span data-feather="tool"></span>
                     Manteniemientos
                   </a>
                 </li>
       
                 <li class="nav-item">
-                  <a class="nav-link" href="reportes.html">
+                  <a class="nav-link" href="#">
                     <span data-feather="bar-chart-2"></span>
                     Reports
                   </a>
@@ -121,53 +121,103 @@
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">Registrar Mantenimientos</h1>
+              <h1 class="h2">Modificaci&oacute;n de Automoviles</h1>
             </div>
             
-            <div class="container" id="modulo-inicial">
-                <div class="row">
-                    <div class="col-6">
-
-                      <div class="mb-3">
-                        <label for="txtAutomovil" class="form-label"><b>Automovil:</b></label>
-                        <select name="txtAutomovil" id="txtAutomovil" class="form-select">
-                          <option value="Audi-A8">Audi A8</option>
-                        </select>
-                      </div>
-
-                      <div class="mb-3">
-                            <label for="txtFechaInicioMantenimiento" class="form-label"><b>Fecha de Inicio:</b></label>
-                            <input type="date" name="txtFechaInicioMantenimiento" id="txtFechaInicioMantenimiento" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="txtFechaFinMantenimiento" class="form-label"><b>Fecha de Fin:</b></label>
-                            <input type="date" name="txtFechaFinMantenimiento" id="txtFechaFinMantenimiento" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="txtDetallesMantenimiento" class="form-label"><b>Detalles de mantenimiento:</b></label>
-                            <textarea name="txtDetallesMantenimiento" id="txtDetallesMantenimiento" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-
-                        <button class="btn btn-primary">Registrar</button>
-                    </div>
-                    <div class="btn-regresar">
-                        <a href="mantenimientos.html" class="btn btn-danger">Regresar</a>
-                    </div>
-
+            <div class="container">
+              <div class="row">
+                <div class="col-1">
+                  <label for="txtNombreAutoModificacion" class="form-label"><b>Nombre:</b></label>
                 </div>
 
-            </div>
+                <div class="col">
+                  <input name="txtNombreAutoModificacion" id="txtNombreAutoModificacion" class="form-control" placeholder="Ingrese el dato a buscar...">
+                </div>
+
+              </div>
+
+              <div class="row mt-4"> 
+                    <div class="col-3">
+                        <form>
+                          <div class="mb-3">
+                            <label for="txtIDAutomovil" class="form-label"><b>ID: </b></label>
+                            <input type="text" class="form-control" id="txtIDAutomovil" readonly value="0">
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="txtMarcaAutomovil" class="form-label"><b>Marca y modelo: </b></label>
+                            <input type="text" class="form-control" id="txtMarcaAutomovil">
+                          </div>
+    
+                          <div class="mb-3">
+                            <label for="txtTipoAuto" class="form-label"><b>Tipo de automovil: </b></label>
+                            <select name="txtTipoAuto" id="txtTipoAuto" class="form-control">
+                              <option value="deportivo" selected>Deportivo</option>
+                              <option value="4x4">4x4</option>
+                            </select>
+                          </div>
+    
+                          <div class="mb-3">
+                            <label for="txtNumPlacaAutomovil" class="form-label"><b># de placa: </b></label>
+                            <input type="text" class="form-control" id="txtNumPlacaAutomovil">
+                          </div>
+        
+                          <div class="mb-3">
+                            <label for="txtColorAutomovil" class="form-label"><b>Color: </b></label>
+                            <input type="text" class="form-control" id="txtColorAutomovil">
+                          </div>
+    
+                          <div class="row g-2">
+                            <label for=""><b>Disponibilidad:</b></label>
+                            <div class="mb-3 ml-5 form-check col-auto">
+                              <input type="radio" class="form-check-input" id="disponible" name="disponibilidad" value="1" checked>
+                              <label class="form-check-label" for="disponible">Disponible</label>  
+                            </div>  
+    
+                            <div class="mb-3 form-check col-auto">
+                              <input type="radio" class="form-check-input" id="noDisponible" name="disponibilidad" value="0">
+                              <label class="form-check-label" for="noDisponible">No disponible</label>  
+                            </div>  
+                          </div>
+                          <button type="submit" class="btn btn-primary">Registrar automovil</button>
+                        </form>
+                      </div>
+
+                      <div class = "col-9">
+                        <div class="table-responsive mt-5">
+                          <table class="table table-striped table-sm table-hover" id="tablaModificarAutomovil">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col"># de Placa</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Disponibilidad</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tblaAutomoviles">                              
+                            </tbody>
+                          </table>
+                        </div>    
+                      </div>   
+
+                </div>
+                <div class="btn-regresar">
+                  <a href="automoviles.html" class="btn btn-danger">Regresar</a>
+                </div>
+
+              </div>
         </main>
     </div>
 </div>
       
     
-
-    <script src="../js/bootstrap-js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script src="../../js/bootstrap-js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="../js/dashboard.js"></script>
+    <script src="../../js/CRUD/modificar-autos.js"></script>
+    <script src="../../js/CRUD/list-auto.js"></script>i
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </body>
 </html>
