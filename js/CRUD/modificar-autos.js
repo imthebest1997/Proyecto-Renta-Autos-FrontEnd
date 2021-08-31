@@ -1,4 +1,3 @@
-
 // Busqueda en tiempo real
 document.getElementById("txtNombreAutoModificacion").onkeyup = function() {
     var buscar_= this.value.toLowerCase() ;
@@ -62,9 +61,33 @@ function obtenerDatos(indice){
 
     document.getElementById("txtMarcaAutomovil").value = marca;
     document.getElementById("txtNumPlacaAutomovil").value = numPlaca;
-    document.getElementById("txtColorAutomovil").value = color;
-    
+    document.getElementById("txtColorAutomovil").value = color;    
 }
 
-  
-  
+function validarCampos(){
+  let numPlaca = document.getElementById("txtNumPlacaAutomovil").value;
+  let marca = document.getElementById("txtMarcaAutomovil").value;
+  let color = document.getElementById("txtColorAutomovil").value;
+  let bandera = false;
+
+  if(numPlaca == "" || marca == "" || color == ""){
+      bandera = true;
+      return bandera;
+  }
+  return bandera;
+}
+
+$(function() {    
+  $("#btnModificarAuto").click(function(){        
+      if(!validarCampos()){
+          //save();            
+      }else{
+          Swal.fire({
+              icon: 'error',
+              title: 'Error...',
+              text: 'No olvide, llenar todos los campos!',
+            })
+      }
+      
+  });
+});

@@ -45,7 +45,8 @@ function save(){
 $(function() {    
     $("#btnRegistrarAuto").click(function(){        
         if(!validarCampos()){
-            save();            
+            save();  
+            limpiarCampos();          
         }else{
             Swal.fire({
                 icon: 'error',
@@ -57,6 +58,13 @@ $(function() {
     });
 });
 
+
+function limpiarCampos(){
+    document.getElementById("txtNumPlacaAutomovil").value = "";
+    document.getElementById("txtMarcaAutomovil").value = "";
+    document.getElementById("txtColorAutomovil").value = "";
+    document.getElementById("txtTipoAuto").value = "deportivo";
+}
 
 function validarCampos(){
     let numPlaca = document.getElementById("txtNumPlacaAutomovil").value;

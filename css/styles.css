@@ -1,4 +1,29 @@
+.card{
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 40px;
+}
 
+.card:hover{
+    background: linear-gradient(145deg, #e3e3e3, #ffffff);
+    box-shadow:  24px 24px 48px #d4d4d4,
+                 -24px -24px 48px #ffffff;
+
+}
+
+.card-image{
+    width: 250px;
+    height: 250px;
+    padding: 25px;
+}
+
+.card-image img{
+    width: 100%;
+}
 .image {
     height: 500px;
     width: 590px;
@@ -13,3 +38,4 @@
 .btn-regresar{
     text-align: end;
 }
+

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modulo Clientes</title>
+    <title>Modulo Clientes - Modicación</title>
     <link href="../../css/bootstrap-css/bootstrap.min.css" rel="stylesheet">  
     <link href="../../css/dashboard.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/styles.css">
@@ -49,7 +49,7 @@
                 </li>
       
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">
+                  <a class="nav-link active" href="clientes.html">
                     <ion-icon name="people-circle-outline"></ion-icon>
                     Clientes
                   </a>
@@ -70,7 +70,7 @@
                 </li>
       
                 <li class="nav-item">
-                  <a class="nav-link" href="reportes.html">
+                  <a class="nav-link" href="#">
                     <ion-icon name="bar-chart-outline"></ion-icon>
                     Reports
                   </a>
@@ -121,54 +121,101 @@
       
           <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">Clientes</h1>
+              <h1 class="h2">Modificar Clientes</h1>
             </div>
             
-            <div class="container" id="modulo-inicial">
-                <div class="row mb-5">
-
-                    <div class="col-4 ">
-                        <div class="card">
-                            <div class="card-image">
-                                <a href="registrar-clientes.html">
-                                    <img src="../../images/registros-clientes.png" alt="">
-                                </a>    
-                            </div>
-                            <h2>Registrar Clientes</h2>    
-                        </div>
+            <div class="container mb-5">
+                <div class="row">
+                    <div class="col-auto">
+                        <label for="txtCliente" class="col-form-label fs-6"><strong>Ingrese el nombre del cliente:</strong> </label>
                     </div>
+ 
+                    <div class="col-6">
+                        <input type="text" id="txtCliente" class="form-control fs-6" placeholder="Ingrese el nombre ....">
+                    </div>
+                
+                </div>
 
+                <div class="row mt-5">
                     <div class="col-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <a href="consultar-clientes.html" class="cards">
-                                    <img src="../../images/consultar-cliente.png" alt="">
-                                </a>    
+                        <h4>Registro de modificación</h4>
+                        <hr>    
+                        <form class="row g-3" action="POST">
+                            <div class="col-12">
+                                <label for="txtCodigoCliente" class="form-label"><b>Código:</b></label>
+                                <input type="text" class="form-control" id="txtCodigoCliente" readonly value="0">
                             </div>
-                            <h2>Consultar Clientes</h2>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <a href="modificar-cliente.html" class="cards">
-                                    <img src="../../images/actualizar-cliente.png" alt="">
-                                </a>        
+  
+                            <div class="col-md-6">
+                              <label for="txtNombreCliente" class="form-label"><b>Nombre:</b></label>
+                              <input type="text" class="form-control" id="txtNombreCliente">
                             </div>
-                            <h2>Modificar Clientes</h2>
-                        </div>
+                            <div class="col-md-6">
+                              <label for="txtCedulaCliente" class="form-label"><b>Cédula:</b></label>
+                              <input type="text" class="form-control" id="txtCedulaCliente">
+                            </div>
+                            <div class="col-md-6">
+                              <label for="txtTelefonoCliente" class="form-label"><b>Telefono:</b></label>
+                              <input type="text" class="form-control" id="txtTelefonoCliente" >
+                            </div>
+                            <div class="col-md-6">
+                              <label for="txtCelularCliente" class="form-label"><b>Celular:</b></label>
+                              <input type="text" class="form-control" id="txtCelularCliente">
+                            </div>
+                            <div class="col-12">
+                              <label for="txtCorreoElectronicoCliente" class="form-label"><b>Correo Electrónico:</b></label>
+                              <input type="email" class="form-control" id="txtCorreoElectronicoCliente">
+                            </div>
+                            <div class="col-12">
+                                <label for="txtNumeroLicenciaCliente" class="form-label"><b># de licencia:</b></label>
+                                <input type="email" class="form-control" id="txtNumeroLicenciaCliente">
+                            </div>
+   
+                            <div class="col-12">
+                              <button type="button" class="btn btn-primary" id = "btnModificarCliente">Registrar</button>
+                            </div>
+                          </form>
                     </div>
+    
+                    <div class="col-8">
+                        <div class="table-responsive mt-5">
+                            <table class="table table-striped table-sm table-hover" id="tablaClientes">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Nombre</th>
+                                  <th scope="col">Cédula</th>
+                                  <th scope="col">Telefono</th>
+                                  <th scope="col">Celular</th>
+                                  <th scope="col">Correo Electronico</th>
+                                  <th scope="col"># de licencia</th>
+                                </tr>
+                              </thead>
+                              <tbody id="tblaClientes">                              
+                              </tbody>
+                            </table>
+                        </div>    
+    
+                    </div>
+                </div>
 
+                <div class="btn-regresar">
+                  <a href="clientes.html" class="btn btn-danger">Regresar</a>
                 </div>
             </div>
         </main>
     </div>
 </div>
       
-    
 
     <script src="../../js/bootstrap-js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script src="../../js/CRUD/registro-clientes.js"></script>
+    <script src="../../js/CRUD/modificar-cliente.js"></script>
+    <script src="../../js/CRUD/list-clientes.js"></script>
+    <script src="../../js/CRUD/busqueda-clientes.js"></script>
+    <script src="../../js/sweetalert2.all.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </body>
 </html>
