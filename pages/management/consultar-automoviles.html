@@ -7,7 +7,7 @@
     <title>Modulo Automoviles - Consultas</title>
     <link href="../../css/bootstrap-css/bootstrap.min.css" rel="stylesheet">  
     <link href="../../css/dashboard.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
 </head>
 <body>
 
@@ -54,14 +54,7 @@
                     Clientes
                   </a>
                 </li>
-      
-                <li class="nav-item">
-                  <a class="nav-link" href="accesorios.html">
-                    <ion-icon name="cube-outline"></ion-icon>
-                    Accesorios
-                  </a>
-                </li>
-      
+            
                 <li class="nav-item">
                   <a class="nav-link" href="mantenimientos.html">
                     <ion-icon name="build-outline"></ion-icon>
@@ -127,11 +120,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto">
-                        <label for="txtAutomovilBuscar" class="col-form-label fs-5"><strong>Ingrese el nombre del automovil:</strong> </label>
+                        <label for="txtAutomovilBuscar" class="col-form-label fs-6"><strong>Ingrese el valor a buscar:</strong> </label>
                     </div>
  
                     <div class="col-auto">
-                        <input type="text" id="txtAutomovilBuscar" class="form-control fs-5">
+                        <input type="text" id="txtAutomovilBuscar" class="form-control fs-6">
+                        <div id="helpResearchAuto" class="form-text">Ingrese el dato a filtrar en la tabla (nombre/tipo/# de placa/color).</div>
                     </div>
         
                     <div class="accordion accordion-flush col-6" id="accordionFlushExample">
@@ -144,21 +138,28 @@
                           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="accordion-body">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="radio" name="radioAuto" id="radioDisponible" >
+                                    <label class="form-check-label" for="radioDisponible">
                                         Lista de automoviles disponibles 
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
+                                    <input class="form-check-input" type="radio" name="radioAuto" id="radioNoDisponible" >
+                                    <label class="form-check-label" for="radioNoDisponible">
                                         Lista de automoviles no disponibles 
                                     </label>
                                 </div>
 
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio" name="radioAuto" id="radioCompleto">
+                                  <label class="form-check-label" for="radioCompleto">
+                                      Lista completa de automoviles  
+                                  </label>
+                              </div>
+
                                 <div class="mt-4">
-                                  <button class="btn btn-primary">Buscar</button>
+                                  <button class="btn btn-primary" id="btnBuscarPorDisponibilidad">Buscar</button>
                                 </div>
                             </div>
                           </div>
@@ -166,37 +167,73 @@
                     </div>
 
                     <div class="table-responsive mt-5">
-                        <table class="table table-striped table-sm table-hover">
+                        <table class="table table-striped table-hover">
                           <thead>
                             <tr>
-                              <th scope="col">#</th>
                               <th scope="col">Marca</th>
                               <th scope="col">Tipo</th>
                               <th scope="col"># de Placa</th>
                               <th scope="col">Color</th>
-                              <th scope="col">Disponibilidad</th>
+                              <th scope="col"></th>
                             </tr>
                           </thead>
                           <tbody id="tblaAutomoviles">                              
                           </tbody>
                         </table>
-                      </div>    
-                    </div>
-                    <div class="btn-regresar">
-                      <a href="automoviles.html" class="btn btn-danger">Regresar</a>
-                    </div>
-    
-                  </div>
+                    </div>    
+                </div>
 
+                <!-- Modal -->
+                <div class="modal fade" id="mdAutomovil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Datos del automovil</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <label><b>Disponibilidad:</b></label>
+                        <span id="spDisponibilidad"></span><br>
+                        <br>
+
+                        <h6>Lista de accesorios</h6>
+                        <hr>
+
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Código</th>
+                              <th>Nombre del accesorio</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody id="tblAccesorios">
+                          </tbody>
+                        </table>
+                        <input type="hidden" id="txtCodigoAutomovil"> <!-- Es un control que contiene el valor del codigo del automovil consultado -->                    
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" id="btnEliminarAutomovil">Eliminar registro</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="d-flex justify-content-end m-3">
+                  <a href="automoviles.html" class="btn btn-danger">Regresar</a>
+                </div>  
+
+
+            </div>
         </main>
     </div>
 </div>
       
-    
     <script src="../../js/jquery-3.6.0.min.js"></script>
     <script src="../../js/bootstrap-js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="../../js/script-modulos.js"></script>
     <script src="../../js/CRUD/list-auto.js"></script>
     <script src="../../js/CRUD/script-busqueda-tiempo-real.js"></script>
     <script src="../../js/sweetalert2.all.min.js"></script>

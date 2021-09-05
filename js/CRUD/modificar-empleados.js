@@ -7,20 +7,20 @@ function contarrows(nombreTabla){
     var total = tabla.rows.length;
     
     for(j=1;j<=total-1;j++){
-       var dato=tabla.rows[j].cells[1].childNodes[0].nodeValue;
-       var dato_2=tabla.rows[j].cells[2].childNodes[0].nodeValue;
-       var dato_3=tabla.rows[j].cells[3].childNodes[0].nodeValue;
-       var dato_4=tabla.rows[j].cells[4].childNodes[0].nodeValue;
-       var dato_5=tabla.rows[j].cells[5].childNodes[0].nodeValue;
-       var dato_6=tabla.rows[j].cells[6].childNodes[0].nodeValue;
+        let codigoEmpleado = tabla.rows[j].cells[0].childNodes[0].nodeValue;;
+        let dato = tabla.rows[j].cells[1].childNodes[0].nodeValue;
+        let dato_2=tabla.rows[j].cells[2].childNodes[0].nodeValue;
+        let dato_3=tabla.rows[j].cells[3].childNodes[0].nodeValue;
+        let dato_4=tabla.rows[j].cells[4].childNodes[0].nodeValue;
+        let dato_5=tabla.rows[j].cells[5].childNodes[0].nodeValue;
 
        let cliente = {
+            "codigoEmpleado": codigoEmpleado,
             "nombre" : dato,       
             "cedula" : dato_2,
             "telefono" : dato_3, 
             "celular" : dato_4,
             "correoElectronico" : dato_5,
-            "numeroLicencia": dato_6
         };
     
         arregloGeneral[i]=cliente;
@@ -33,20 +33,20 @@ var indice;
 
 document.querySelector('#tblaEmpleados').onclick = function(ev) {
     indice = ev.target.parentElement.rowIndex;
-    document.getElementById("txtCodigoEmpleado").value = indice;
     obtenerDatos(indice);
 }
   
 function obtenerDatos(indice){
     let cliente = contarrows("tablaEmpleados");
+    let codigo = cliente[indice-1].codigoEmpleado;
     let nombre = cliente[indice-1].nombre;
     let cedula = cliente[indice-1].cedula;
     let telefono = cliente[indice-1].telefono;
     let celular = cliente[indice-1].celular;
     let correoElectronico = cliente[indice-1].correoElectronico;
-    let numeroLicencia = cliente[indice-1].numeroLicencia;
 
     
+    document.getElementById("txtCodigoEmpleado").value = codigo;    
     document.getElementById("txtNombreEmpleado").value = nombre;       
     document.getElementById("txtCedulaEmpleado").value = cedula;       
     document.getElementById("txtTelefonoEmpleado").value = telefono;       
@@ -174,7 +174,8 @@ function save(){
     });
 }
 
-$(function() {    
+$(function() {   
+    list(); 
     $("#btnModificarEmpleado").click(function(){        
         if(!validarCampos() && validarEmail()){
             if(validarCedula()){
@@ -205,3 +206,47 @@ $(function() {
 });
 
 
+function show(list){
+    let i = 1;
+    $("#tblaEmpleados").empty(); //Eliminar todo el contenido de la tabla
+    list.forEach(empleado =>{        
+        $("#tblaEmpleados").append('<tr>' 
+            + '<td>' + empleado.codigoEmpleado + '</td>'
+            + '<td>' + empleado.nombre + '</td>' 
+            + '<td>' + empleado.cedula + '</td>'
+            + '<td>' + empleado.telefono + '</td>'
+            + '<td>' + empleado.celular + '</td>'
+            + '<td>' + empleado.correoElectronico + '</td>'
+            + '<td>' + empleado.numeroAutosRentados + '</td>' 
+        +'</tr>')    
+        i++;
+    });
+}
+
+function list(){
+    $.ajax({
+        type: "GET", //Verbo de HTTP a utilizar
+        url: "http://localhost:8080/empleado/list", //Dirección para realizar la petición HTTP
+        contentType : "application/json",
+        dataType: "json",
+        success : function(response){
+            console.log(response);
+            show(response);
+        },
+		error : function(err){
+			console.error(err);
+		},
+        complete: function(xhr, textStatus) {            
+            if(xhr.status == 404){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: xhr.responseText,
+                  })
+            }
+            if(xhr.status == 500){
+                alert(xhr.responseText);
+            }
+        }               
+    });
+}

@@ -3,14 +3,13 @@ function serializeForm(){
     let automovil = {
         "marca" : $("#txtMarcaAutomovil").val(),       
         "tipoAuto" : $("#txtTipoAuto").val(),
-        "numPlaca" : $("#txtNumPlacaAutomovil").val(), 
+        "numeroPlaca" : $("#txtNumPlacaAutomovil").val(), 
         "color" : $("#txtColorAutomovil").val(),
         "disponibilidad" : 1,
         "listaAccesorios": accesorios
     };
     return automovil;
 }
-
 
 function save(){
     var automovil = serializeForm();
@@ -30,7 +29,8 @@ function save(){
                 icon: 'success',
                 title: 'Success',
                 text: 'El automovil ha sido creado correctamente!'
-              })
+              });
+              $("#tblaAccesorios").empty();
 		},
 		error : function(err){
 			console.error(err);

@@ -8,7 +8,7 @@
     border-radius: 40px;
 }
 
-.card:hover{
+.card:hover,.card-modulos:hover{
     background: linear-gradient(145deg, #e3e3e3, #ffffff);
     box-shadow:  24px 24px 48px #d4d4d4,
                  -24px -24px 48px #ffffff;
@@ -37,4 +37,27 @@
 
 .btn-regresar,.alinear-end{
     text-align: end;
+}
+
+.card-modulos{
+    width: 375px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 40px;
+}
+
+.card-modulos-img{
+    width: 250px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-modulos-img img{
+    width: 100%;
 }

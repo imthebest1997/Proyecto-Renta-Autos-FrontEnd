@@ -5,14 +5,16 @@ function contarrows(nombreTabla){
     var total = tabla.rows.length;
     
     for(j=1;j<=total-1;j++){
-       var dato=tabla.rows[j].cells[1].childNodes[0].nodeValue;
-       var dato_2=tabla.rows[j].cells[2].childNodes[0].nodeValue;
-       var dato_3=tabla.rows[j].cells[3].childNodes[0].nodeValue;
-       var dato_4=tabla.rows[j].cells[4].childNodes[0].nodeValue;
-       var dato_5=tabla.rows[j].cells[5].childNodes[0].nodeValue;
-       var dato_6=tabla.rows[j].cells[6].childNodes[0].nodeValue;
+       let codigo = tabla.rows[j].cells[0].childNodes[0].nodeValue;  
+       let dato = tabla.rows[j].cells[1].childNodes[0].nodeValue;
+       let dato_2 = tabla.rows[j].cells[2].childNodes[0].nodeValue;
+       let dato_3 = tabla.rows[j].cells[3].childNodes[0].nodeValue;
+       let dato_4 = tabla.rows[j].cells[4].childNodes[0].nodeValue;
+       let dato_5 = tabla.rows[j].cells[5].childNodes[0].nodeValue;
+       let dato_6 = tabla.rows[j].cells[6].childNodes[0].nodeValue;
 
        let cliente = {
+            "codigoCliente": codigo,
             "nombre" : dato,       
             "cedula" : dato_2,
             "telefono" : dato_3, 
@@ -31,12 +33,12 @@ var indice;
 
 document.querySelector('#tblaClientes').onclick = function(ev) {
     indice = ev.target.parentElement.rowIndex;
-    document.getElementById("txtCodigoCliente").value = indice;
     obtenerDatos(indice);
 }
   
 function obtenerDatos(indice){
     let cliente = contarrows("tablaClientes");
+    let codigo  = cliente[indice-1].codigoCliente;
     let nombre = cliente[indice-1].nombre;
     let cedula = cliente[indice-1].cedula;
     let telefono = cliente[indice-1].telefono;
@@ -44,7 +46,7 @@ function obtenerDatos(indice){
     let correoElectronico = cliente[indice-1].correoElectronico;
     let numeroLicencia = cliente[indice-1].numeroLicencia;
 
-    
+    document.getElementById("txtCodigoCliente").value = codigo;    
     document.getElementById("txtNombreCliente").value = nombre;       
     document.getElementById("txtCedulaCliente").value = cedula;       
     document.getElementById("txtTelefonoCliente").value = telefono;       
@@ -176,11 +178,13 @@ function save(){
 }
 
 $(function() {    
+    list();
     $("#btnModificarCliente").click(function(){        
         if(!validarCampos() && validarEmail()){
             if(validarCedula()){
                 save();  
-                limpiarCampos();         
+                limpiarCampos();  
+                list();       
             }else{
                 Swal.fire({
                     icon: 'error',
@@ -206,3 +210,45 @@ $(function() {
 });
 
 
+function show(list){
+    $("#tblaClientes").empty(); //Eliminar todo el contenido de la tabla
+    list.forEach(cliente =>{        
+        $("#tblaClientes").append('<tr>' 
+            + '<td>' + cliente.codigoCliente + '</td>'
+            + '<td>' + cliente.nombre + '</td>' 
+            + '<td>' + cliente.cedula + '</td>'
+            + '<td>' + cliente.telefono + '</td>'
+            + '<td>' + cliente.celular + '</td>'
+            + '<td>' + cliente.correoElectronico + '</td>'
+            + '<td>' + cliente.numeroLicencia + '</td>'            
+        +'</tr>')    
+    });
+}
+
+function list(){
+    $.ajax({
+        type: "GET", //Verbo de HTTP a utilizar
+        url: "http://localhost:8080/cliente/list", //Dirección para realizar la petición HTTP
+        contentType : "application/json",
+        dataType: "json",
+        success : function(response){
+            console.log(response);
+            show(response);
+        },
+		error : function(err){
+			console.error(err);
+		},
+        complete: function(xhr, textStatus) {            
+            if(xhr.status == 404){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: xhr.responseText,
+                  })
+            }
+            if(xhr.status == 500){
+                alert(xhr.responseText);
+            }
+        }               
+    });
+}
