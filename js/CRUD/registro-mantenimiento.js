@@ -1,6 +1,6 @@
 let automoviles = [];
 let detalleMantenimientos = [];
-function listAutomoviles(){
+function listMantenimientos(){
     $.ajax({
         type: "GET", //Verbo de HTTP a utilizar
         url: "http://localhost:8080/automovil/list", //Dirección para realizar la petición HTTP
@@ -132,7 +132,7 @@ function save(){
 
 
 $(function(){
-    listAutomoviles();
+    listMantenimientos();
     $("#insertarDetalleMModal").click(function(){
         if(!verificarCamposIngreso()){
             ingresarDetallesM();
@@ -144,10 +144,16 @@ $(function(){
 
     $("#btnRegistrarMantenimiento").click(function(){
         save();
+        lipiarCampos();
+
     });
     
 });
 
+function lipiarCampos(){
+    $("#txtAutomovil").val("1");
+    detalleMantenimientos = [];
+}
 
 function cerrarPopupDetallesM() {
     $("#listaDetalleMantenimiento").modal('hide');//ocultamos el modal

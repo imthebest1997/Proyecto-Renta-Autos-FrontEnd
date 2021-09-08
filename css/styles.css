@@ -61,3 +61,10 @@
 .card-modulos-img img{
     width: 100%;
 }
+
+.carousel-image{
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
