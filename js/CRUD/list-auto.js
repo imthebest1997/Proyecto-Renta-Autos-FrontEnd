@@ -8,6 +8,7 @@ function show(list){
             + '<td>' + automovil.tipoAuto + '</td>' 
             + '<td>' + automovil.numeroPlaca + '</td>'
             + '<td>' + automovil.color + '</td>'
+            + '<td>' +"$ " +automovil.precioPorDia + '</td>'
             + '<td>' 
                 + '<button onclick ="retrieve('+automovil.codigoAutomovil+')" type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdAutomovil">Consultar</button>'            
             + '</td>' 
@@ -61,8 +62,8 @@ function listByDisponibilidad(disponibilidad){
         complete: function(xhr, textStatus) {            
             if(xhr.status == 404){
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
+                    icon: 'warning',
+                    title: 'Warning',
                     text: xhr.responseText,
                   })
             }
@@ -119,7 +120,6 @@ function retrieve(codigo){
 		}
     });
 }
-
 
 function del(){
     let codigo = $("#txtCodigoAutomovil").val();

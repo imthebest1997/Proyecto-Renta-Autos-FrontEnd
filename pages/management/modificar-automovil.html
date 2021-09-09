@@ -127,18 +127,20 @@
             <div class="container">
               <div class="row mt-4"> 
                     <div class="col-6">
-                        <form>
-                          <div class="mb-3">
+                        <form method="POST" class="row g-2">
+
+                          <div class="col-9"></div>
+                          <div class="mb-3 col-3">
                             <label for="txtIDAutomovil" class="form-label"><b>ID: </b></label>
                             <input type="text" class="form-control" id="txtIDAutomovil" readonly value="0">
                           </div>
 
-                          <div class="mb-3">
+                          <div class="mb-3 col-6">
                             <label for="txtMarcaAutomovil" class="form-label"><b>Marca y modelo: </b></label>
                             <input type="text" class="form-control" id="txtMarcaAutomovil">
                           </div>
     
-                          <div class="mb-3">
+                          <div class="mb-3 col-6">
                             <label for="txtTipoAuto" class="form-label"><b>Tipo de automovil: </b></label>
                             <select name="txtTipoAuto" id="txtTipoAuto" class="form-control">
                               <option value="deportivo" selected>Deportivo</option>
@@ -146,16 +148,26 @@
                             </select>
                           </div>
     
-                          <div class="mb-3">
+                          <div class="mb-3 col-4">
                             <label for="txtNumPlacaAutomovil" class="form-label"><b># de placa: </b></label>
                             <input type="text" class="form-control" id="txtNumPlacaAutomovil">
                           </div>
         
-                          <div class="mb-3">
+                          <div class="mb-3 col-4">
                             <label for="txtColorAutomovil" class="form-label"><b>Color: </b></label>
                             <input type="text" class="form-control" id="txtColorAutomovil">
                           </div>
-    
+
+                          <div class="mb-3 col-4">
+                            <label for="txtPrecioDiaRentaAutomovil" class="form-label"><b>Precio de renta por dia ($): </b></label>
+                            <input type="number" class="form-control" id="txtPrecioDiaRentaAutomovil" min="50.00" value="50" step="any" required>
+                          </div>
+
+                          <div class="mb-3">
+                            <button type="button" class="btn btn-primary" id="btnAgregarAccesorios" data-bs-toggle="modal" data-bs-target="#listaAccesoriosModificacion">Agregar accesorios</button>
+                            <button type="button" class="btn btn-primary" id="btnAgregarAccesorios" data-bs-toggle="modal" data-bs-target="#listaAutosModificacion">Lista de autos</button>
+                          </div>
+
                           <div class="row g-2">
                             <label for=""><b>Disponibilidad:</b></label>
                             <div class="mb-3 ml-5 form-check col-auto">
@@ -167,11 +179,6 @@
                               <input type="radio" class="form-check-input" id="radioNoDisponible" name="disponibilidad" value="0">
                               <label class="form-check-label" for="noDisponible">No disponible</label>  
                             </div>  
-                          </div>
-
-                          <div class="mb-3">
-                            <button type="button" class="btn btn-primary" id="btnAgregarAccesorios" data-bs-toggle="modal" data-bs-target="#listaAccesoriosModificacion">Agregar accesorios</button>
-                            <button type="button" class="btn btn-primary" id="btnAgregarAccesorios" data-bs-toggle="modal" data-bs-target="#listaAutosModificacion">Lista de autos</button>
                           </div>
                         </form>
                       </div>
@@ -250,6 +257,7 @@
                                         <th scope="col">Tipo</th>
                                         <th scope="col"># de Placa</th>
                                         <th scope="col">Color</th>
+                                        <th scope="col">Precio por día</th>
                                         <th scope="col">Disponibilidad</th>
                                       </tr>
                                     </thead>

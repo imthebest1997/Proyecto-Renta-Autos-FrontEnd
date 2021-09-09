@@ -27,18 +27,20 @@ function contarrows(nombreTabla){
     
     for(j=1;j<=total-1;j++){
        var codigo=tabla.rows[j].cells[0].childNodes[0].nodeValue;         
-       var dato=tabla.rows[j].cells[1].childNodes[0].nodeValue;
-       var dato_2=tabla.rows[j].cells[2].childNodes[0].nodeValue;
-       var dato_3=tabla.rows[j].cells[3].childNodes[0].nodeValue;
-       var dato_4=tabla.rows[j].cells[4].childNodes[0].nodeValue;
-       var dato_5=tabla.rows[j].cells[5].childNodes[0].nodeValue;
+       var marca=tabla.rows[j].cells[1].childNodes[0].nodeValue;
+       var tipoAuto=tabla.rows[j].cells[2].childNodes[0].nodeValue;
+       var numPlaca=tabla.rows[j].cells[3].childNodes[0].nodeValue;
+       var color=tabla.rows[j].cells[4].childNodes[0].nodeValue;
+       var precioPorDia=tabla.rows[j].cells[5].childNodes[0].nodeValue;
+       var disponibilidad=tabla.rows[j].cells[6].childNodes[0].nodeValue;
        let objeto = {
             codigo:codigo,
-            marca:dato.trim(),
-            tipo: dato_2.trim(),
-            numPlaca: dato_3.trim(),
-            color: dato_4.trim(),
-            disponibilidad:dato_5.trim()
+            marca:marca.trim(),
+            tipo: tipoAuto.trim(),
+            numPlaca: numPlaca.trim(),
+            color: color.trim(),
+            precioPorDia: precioPorDia.trim(),
+            disponibilidad:disponibilidad.trim()
         }
         arregloGeneral[i]=objeto;
        i++;
@@ -52,7 +54,6 @@ document.querySelector('#tablaModificarAutomovil').onclick = function(ev) {
 }
 
 
-
 function obtenerDatos(indice){
     let autos = contarrows("tablaModificarAutomovil");
     let id = autos[indice-1].codigo;
@@ -60,6 +61,7 @@ function obtenerDatos(indice){
     let numPlaca = autos[indice-1].numPlaca;
     let color = autos[indice-1].color;
     let disponibilidad = autos[indice-1].disponibilidad; 
+    let precio  = autos[indice-1].precioPorDia;
     if(disponibilidad == "Disponible"){
       $("#radioDisponible").prop('checked',true);
       $("#radioNoDisponible").prop('checked',false);
@@ -72,6 +74,7 @@ function obtenerDatos(indice){
     document.getElementById("txtMarcaAutomovil").value = marca;
     document.getElementById("txtNumPlacaAutomovil").value = numPlaca;
     document.getElementById("txtColorAutomovil").value = color;
+    document.getElementById("txtPrecioDiaRentaAutomovil").value = precio;
     cerrarPopupAutos();
     retrieve(id);
 }
@@ -135,6 +138,7 @@ function show(list){
           + '<td>' + automovil.tipoAuto + '</td>' 
           + '<td>' + automovil.numeroPlaca + '</td>'
           + '<td>' + automovil.color + '</td>'
+          + '<td>' + automovil.precioPorDia + '</td>'
           + '<td>' + disponibilidad + '</td>'
       +'</tr>')    
     });
@@ -214,11 +218,13 @@ function serializeForm(){
 }
 
 function limpiarCampos(){
-  $("#txtIDAutomovil").val(0);
-  $("#txtMarcaAutomovil").val("");
-  $("#txtNumPlacaAutomovil").val("");
-  $("#txtTipoAuto").val("deportivo");
-  $("#radioDisponible").prop('checked',true);
+    $("#txtIDAutomovil").val(0);
+    $("#txtMarcaAutomovil").val("");
+    $("#txtNumPlacaAutomovil").val("");
+    $("#txtTipoAuto").val("deportivo");
+    $("#txtColorAutomovil").val("");
+    $("#radioDisponible").prop('checked',true);
+    $("#txtPrecioDiaRentaAutomovil").val("50.00");    
 }
 
 
@@ -244,7 +250,6 @@ function retrieve(codigo){
       success : function(response){
           console.log(response);    
           listAccesorios(response);
-          // nuevoArray = response.listaAccesorios;//El arreglo actualiza al realizar una consulta              
           copiarArreglo(response.listaAccesorios);
 
         },

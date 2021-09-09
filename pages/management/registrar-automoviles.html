@@ -127,33 +127,39 @@
             <div class="container">
                 <div class="row">
                   <div class="col-6">
-                    <form method="POST">
-
-                      <div class="mb-3">
+                    <form method="POST" class="row g-2">
+                      <div class="mb-3 col-6">
                         <label for="txtMarcaAutomovil" class="form-label"><b>Marca: </b></label>
                         <input type="text" class="form-control" id="txtMarcaAutomovil" required>
                       </div>
 
-                      <div class="mb-3">
+                      <div class="mb-3 col-6">
                         <label for="txtTipoAuto" class="form-label"><b>Tipo de automovil: </b></label>
                         <select name="txtTipoAuto" id="txtTipoAuto" class="form-control">
                           <option value="deportivo" selected>Deportivo</option>
                           <option value="4x4">4x4</option>
                           <option value="buseta">Buseta</option>
+                          <option value="sedan">Sedan</option>
+                          <option value="rally">Rally</option>
+                          <option value="rally">W</option>
                         </select>
                       </div>
 
-                      <div class="mb-3">
+                      <div class="mb-3 col-4">
                         <label for="txtNumPlacaAutomovil" class="form-label"><b># de placa: </b></label>
                         <input type="text" class="form-control" id="txtNumPlacaAutomovil" required>
                       </div>
 
-                      <div class="mb-3">
+                      <div class="mb-3 col-4">
                         <label for="txtColorAutomovil" class="form-label"><b>Color: </b></label>
                         <input type="text" class="form-control" id="txtColorAutomovil" required>
                       </div>
 
-      
+                      <div class="mb-3 col-4">
+                        <label for="txtPrecioDiaRentaAutomovil" class="form-label"><b>Precio de renta por dia ($): </b></label>
+                        <input type="number" class="form-control" id="txtPrecioDiaRentaAutomovil" min="50.00" value="50" step="any" required>
+                      </div>
+                      
                     </form>
                     <div class="alinear-end">
                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#listaAccesorios">Agregar Accesorios</button>

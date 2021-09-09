@@ -97,8 +97,11 @@ function serializeForm(){
     let mantenimiento = {
         "fechaInicio" : $("#txtFechaInicioMantenimiento").val(),       
         "fechaFin" : $("#txtFechaFinMantenimiento").val(),
-        "automovil": $("#txtAutomovil").val(),
         "detalleMantenimiento" : detalleMantenimientos, 
+        "automovil":{
+            "codigoAutomovil" : $("#txtAutomovil").find(":selected").val(),
+            // "codigoAutomovil" : $("#txtAutomovil").val(),
+        }, 
     };
     return mantenimiento;
 }

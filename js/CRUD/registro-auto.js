@@ -6,6 +6,7 @@ function serializeForm(){
         "numeroPlaca" : $("#txtNumPlacaAutomovil").val(), 
         "color" : $("#txtColorAutomovil").val(),
         "disponibilidad" : 1,
+        "precioPorDia": $("#txtPrecioDiaRentaAutomovil").val(),
         "listaAccesorios": accesorios
     };
     return automovil;
@@ -39,18 +40,26 @@ function save(){
 }
 
 $(function() {    
+    let precio_str,precio;
     $("#btnRegistrarAuto").click(function(){        
-        if(!validarCampos()){
+        precio_str = $("#txtPrecioDiaRentaAutomovil").val();
+        precio = parseFloat(precio_str);    
+        if(!validarCampos() && precio>50){
             save();  
             limpiarCampos();          
-        }else{
+        }else if(validarCampos()){
             Swal.fire({
                 icon: 'error',
                 title: 'Error...',
                 text: 'No olvide, llenar todos los campos!',
               })
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning...',
+                text: 'El precio ingresado es incorrecto!',
+              })
         }
-        
     });
 
     $("#insertarAccesorioModal").click(function(){
@@ -60,16 +69,18 @@ $(function() {
 
 
 function limpiarCampos(){
-    document.getElementById("txtNumPlacaAutomovil").value = "";
-    document.getElementById("txtMarcaAutomovil").value = "";
-    document.getElementById("txtColorAutomovil").value = "";
-    document.getElementById("txtTipoAuto").value = "deportivo";
+    $("#txtNumPlacaAutomovil").val("");
+    $("#txtMarcaAutomovil").val("");
+    $("#txtColorAutomovil").val("");
+    $("#txtTipoAuto").val("deportivo");
+    $("#txtPrecioDiaRentaAutomovil").val("50.00");
 }
 
 function validarCampos(){
     let numPlaca = document.getElementById("txtNumPlacaAutomovil").value;
     let marca = document.getElementById("txtMarcaAutomovil").value;
     let color = document.getElementById("txtColorAutomovil").value;
+
     let bandera = false;
 
     if(numPlaca == "" || marca == "" || color == ""){
@@ -82,7 +93,6 @@ function validarCampos(){
 
 
 ///MODAL
-
 function validarCamposModal(){
     let nombre = document.getElementById("txtNombreAccesorio").value;
     let bandera = false;
