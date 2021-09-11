@@ -154,8 +154,6 @@ function delAccesorios(codigo){
     
 }
 
-
-
 $( function(){
     listAutomoviles();    
     $("#btnBuscarPorDisponibilidad").click(function(){

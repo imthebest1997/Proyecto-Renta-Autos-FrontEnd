@@ -39,7 +39,7 @@ function cargarSelect(automoviles){
     });    
 }
 
-function verificarCamposIngreso(){
+function verificarCamposIngresoModal(){
     let nombre = $("#txtNombreDetalleM").val();
     let detalleM = $("#txtDetalleM").val();
     let bandera = false;
@@ -100,7 +100,6 @@ function serializeForm(){
         "detalleMantenimiento" : detalleMantenimientos, 
         "automovil":{
             "codigoAutomovil" : $("#txtAutomovil").find(":selected").val(),
-            // "codigoAutomovil" : $("#txtAutomovil").val(),
         }, 
     };
     return mantenimiento;
@@ -133,11 +132,32 @@ function save(){
     });
 }
 
+function validarCampos(){
+    let fechaInicio = $("#txtFechaInicioMantenimiento").val();
+    let fechaFin = $("#txtFechaFinMantenimiento").val();
+    let tam = detalleMantenimientos.length;
+    let bandera = false;
+    if(fechaInicio == '' || fechaFin == "" || tam == 0){
+        bandera = true;
+        return bandera;
+    }
+}
+
+function validarFechasIngreso(){
+    let fechaInicio = $("#txtFechaInicioMantenimiento").val();
+    let fechaFin = $("#txtFechaFinMantenimiento").val();
+    let bandera = false;
+    
+    if(fechaFin<fechaInicio){
+        bandera = true;
+        return bandera;
+    }
+}
 
 $(function(){
     listMantenimientos();
     $("#insertarDetalleMModal").click(function(){
-        if(!verificarCamposIngreso()){
+        if(!verificarCamposIngresoModal()){
             ingresarDetallesM();
             listDetallesM();
             cerrarPopupDetallesM();
@@ -146,15 +166,31 @@ $(function(){
     });
 
     $("#btnRegistrarMantenimiento").click(function(){
-        save();
-        lipiarCampos();
+        if(!validarCampos() && !validarFechasIngreso()){
+            save();
+            limpiarCampos();            
+        }else if(validarCampos()){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'No olvide, llenar todos los campos!'
+              });
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'El rango de fechas es erroneo!'
+              });            
+        }
 
     });
     
 });
 
-function lipiarCampos(){
+function limpiarCampos(){
     $("#txtAutomovil").val("1");
+    $("#txtFechaInicioMantenimiento").val("");
+    $("#txtFechaFinMantenimiento").val("");
     detalleMantenimientos = [];
 }
 

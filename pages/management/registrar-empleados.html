@@ -130,28 +130,25 @@
                         <form class="row g-3">
                             <div class="col-md-6">
                               <label for="txtNombreEmpleado" class="form-label"><b>Nombre:</b></label>
-                              <input type="text" class="form-control" id="txtNombreEmpleado">
+                              <input type="text" class="form-control" id="txtNombreEmpleado" maxlength="40">
                             </div>
                             <div class="col-md-6">
                               <label for="txtCedulaEmpleado" class="form-label"><b>Cédula:</b></label>
-                              <input type="text" class="form-control" id="txtCedulaEmpleado">
+                              <input type="text" class="form-control" id="txtCedulaEmpleado" minlength="10" maxlength="13">
                             </div>
                             <div class="col-md-6">
                               <label for="txtTelefonoEmpleado" class="form-label"><b>Telefono:</b></label>
-                              <input type="text" class="form-control" id="txtTelefonoEmpleado" >
+                              <input type="text" class="form-control" id="txtTelefonoEmpleado" minlength="9" maxlength="9">
                             </div>
                             <div class="col-md-6">
                               <label for="txtCelularEmpleado" class="form-label"><b>Celular:</b></label>
-                              <input type="text" class="form-control" id="txtCelularEmpleado">
+                              <input type="text" class="form-control" id="txtCelularEmpleado" minlength="10" maxlength="10">
                             </div>
+
                             <div class="col-12">
                               <label for="txtCorreoElectronicoEmpleado" class="form-label"><b>Correo Electrónico:</b></label>
                               <input type="email" class="form-control" id="txtCorreoElectronicoEmpleado">
                             </div>
-                            <!-- <div class="col-12">
-                                <label for="txtNumeroLicenciaCliente" class="form-label"><b># de licencia:</b></label>
-                                <input type="email" class="form-control" id="txtNumeroLicenciaCliente">
-                            </div> -->
    
                             <div class="col-12">
                               <button type="button" class="btn btn-primary" id = "btnRegistrarEmpleado">Registrar</button>
