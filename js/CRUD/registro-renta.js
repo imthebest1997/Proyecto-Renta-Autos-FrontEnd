@@ -2,16 +2,17 @@ let listaClientes = [];
 let listaAutomoviles = [];
 let fechas = [];
 
-function listAutos(){
+// Lista de autos disponibles para cargarlo al select 
+function listByDisponibilidad(disponibilidad){
     $.ajax({
         type: "GET", //Verbo de HTTP a utilizar
-        url: "http://localhost:8080/automovil/list", //Dirección para realizar la petición HTTP
+        url: "http://localhost:8080/automovil/list/" + disponibilidad, //Dirección para realizar la petición HTTP
         contentType : "application/json",
         dataType: "json",
         success : function(response){
             console.log(response);
             cargarSelectAutos(response);
-            copiarObjetos(response);
+            listaAutomoviles = response;
             $("#txtPrecioDiaRenta").val(response[0].precioPorDia);//Setear el precio de renta del auto inicial
         },
 		error : function(err){
@@ -20,8 +21,8 @@ function listAutos(){
         complete: function(xhr, textStatus) {            
             if(xhr.status == 404){
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
+                    icon: 'warning',
+                    title: 'Warning',
                     text: xhr.responseText,
                   })
             }
@@ -33,6 +34,7 @@ function listAutos(){
     });
 }
 
+// Lista de empleados para cargarlo al select
 function listEmpleados(){
     $.ajax({
         type: "GET", //Verbo de HTTP a utilizar
@@ -61,7 +63,7 @@ function listEmpleados(){
         
     });
 }
-
+// Lista de clientes para cargarlo al select
 function listClientes(){
     $.ajax({
         type: "GET", //Verbo de HTTP a utilizar
@@ -123,8 +125,8 @@ function cargarSelectClientes(clientes){
 
 function serializeForm(){        
     let renta = {
-        "inicio" : $("#txtFechaInicioRenta").val(),       
-        "fin" : $("#txtFechaFinRenta").val(),
+        "fechaInicio" : $("#txtFechaInicioRenta").val(),       
+        "fechaFin" : $("#txtFechaFinRenta").val(),
         "empleado": $("#txtEmpleadoRenta").val(),
         "cliente": $("#txtClienteRenta").val(),
         "automovil": $("#txtAutomovilRenta").val(),
@@ -159,6 +161,7 @@ function save(){
     });
 }
 
+//Verificar que no existan campos vacios
 function validarCampos(){
     let precioDia = $("#txtPrecioDiaRenta").val();
     let totalRenta = $("#txtTotalRenta").val();
@@ -172,13 +175,20 @@ function validarCampos(){
 }
 
 $(function(){
-    listAutos();
-    listEmpleados();
-    listClientes();
-    cambiarPrecioRenta();
+    listByDisponibilidad(true);//Cargar los selects con la lista de autos
+    listEmpleados();//Cargar los selects con la lista de empleados
+    listClientes();//Cargar los selects con la lista de clientes
+    cambiarPrecioRenta();//Cambiar dinámicamente el precio según el auto seleccionado
+    setearFecha();//Setea la fecha actual en la fecha de inicio
     $("#btnRegistrarRenta").click(function(){
-        if(!validarCampos()){
+        if(!validarCampos() && !verificarRangoFechas()){
             save();
+        }else if(verificarRangoFechas()){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Warning',
+                text: 'El rango de fecha es erroneo'
+              });                                   
         }else{
             Swal.fire({
                 icon: 'warning',
@@ -187,7 +197,6 @@ $(function(){
               });           
         }
     }); 
-    setearFecha();
 
     $("#btnVerificarFechaRenta").click(function(){
         if(!verificarRangoFechas()){
@@ -200,8 +209,11 @@ $(function(){
               });                                   
         }
     });
+
+    actualizarPrecio();
 });
 
+//Calcula el # de dias de renta del auto
 function diasRenta(){
     let fechaInicial = $("#txtFechaInicioRenta").val();
     let fechaFin = $("#txtFechaFinRenta").val();
@@ -216,6 +228,7 @@ function diasRenta(){
     return diasTranscurridos;
 }
 
+//Verifica que el rango de fechas ingresado sea correcto
 function verificarRangoFechas(){
     let fechaInicial = $("#txtFechaInicioRenta").val();
     let fechaFin = $("#txtFechaFinRenta").val();
@@ -226,7 +239,7 @@ function verificarRangoFechas(){
     }
     return bandera;
 }
-
+//Setear fecha actual en el campo fecha inicio
 function setearFecha(){
     let fecha = new Date();
     let mesActual,diaActual;
@@ -236,29 +249,15 @@ function setearFecha(){
         mesActual = fecha.getMonth()+1;
     }    
 
+    diaActual = fecha.getDate();
+
     if(fecha.getDate() < 10){
         diaActual = "0" + fecha.getDate();        
     }
 
     let fechaActual = fecha.getFullYear()+"-"+mesActual+ "-" + diaActual;
     document.getElementById("txtFechaInicioRenta").value = fechaActual;  
-}
-
-function cerrarPopupDetallesM() {
-    $("#listaDetalleMantenimiento").modal('hide');//ocultamos el modal
-    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
-    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
-}
-
-function copiarObjetos(automovil){
-    automovil.forEach(x=>{
-        let auto = {
-            "codigoAutomovil": x.codigoAutomovil,
-            "precioPorDia": x.precioPorDia,
-            "disponibilidad" : 1,
-        };
-        listaAutomoviles.push(auto);        
-    });
+    console.log(fechaActual);
 }
 
 function cambiarPrecioRenta(){
@@ -278,9 +277,25 @@ function cambiarPrecioRenta(){
 }
 
 function calcularTotal(){
-    let dias = diasRenta();        
+    let dias = diasRenta();//Calcular el # de dias entre la fecha de inicio y fin        
     let precioRenta = $("#txtPrecioDiaRenta").val();
     let total = dias*precioRenta;
  
     $("#txtTotalRenta").val(total.toFixed(2));
 }
+
+function actualizarPrecio(){
+    // let fechaInicial = $("#txtFechaInicioRenta").val();
+    let fechaFin = document.getElementById("txtFechaFinRenta");
+    let fechaInicial = document.getElementById("txtFechaInicioRenta");
+    
+    fechaInicial.addEventListener("change",function(){
+        calcularTotal();
+    });
+
+    fechaFin.addEventListener("change",function(){
+        calcularTotal();
+    });
+}
+
+

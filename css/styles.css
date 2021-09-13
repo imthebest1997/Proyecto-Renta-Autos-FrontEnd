@@ -8,7 +8,17 @@
     border-radius: 40px;
 }
 
-.card:hover,.card-modulos:hover{
+.card-1{
+    width: 350px;
+    height: 370px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 40px;
+}
+
+.card:hover,.card-modulos:hover,.card-1:hover{
     background: linear-gradient(145deg, #e3e3e3, #ffffff);
     box-shadow:  24px 24px 48px #d4d4d4,
                  -24px -24px 48px #ffffff;
@@ -20,6 +30,7 @@
     height: 250px;
     padding: 25px;
 }
+
 
 .card-image img{
     width: 100%;
