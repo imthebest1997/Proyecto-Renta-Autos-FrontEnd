@@ -210,6 +210,7 @@ function serializeForm(){
       "marca" : $("#txtMarcaAutomovil").val(),       
       "tipoAuto" : $("#txtTipoAuto").val(),
       "numeroPlaca" : $("#txtNumPlacaAutomovil").val(), 
+      "precioPorDia": $("#txtPrecioDiaRentaAutomovil").val(),
       "color" : $("#txtColorAutomovil").val(),
       "disponibilidad" : disponibilidad,
       "listaAccesorios": listaAccesorios,

@@ -8,7 +8,7 @@ function show(list){
             + '<td>' + automovil.tipoAuto + '</td>' 
             + '<td>' + automovil.numeroPlaca + '</td>'
             + '<td>' + automovil.color + '</td>'
-            + '<td>' +"$ " +automovil.precioPorDia + '</td>'
+            + '<td>' +"$ " +automovil.precioPorDia.toFixed(2) + '</td>'
             + '<td>' 
                 + '<button onclick ="retrieve('+automovil.codigoAutomovil+')" type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdAutomovil">Consultar</button>'            
             + '</td>' 

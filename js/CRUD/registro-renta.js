@@ -13,7 +13,7 @@ function listByDisponibilidad(disponibilidad){
             console.log(response);
             cargarSelectAutos(response);
             listaAutomoviles = response;
-            $("#txtPrecioDiaRenta").val(response[0].precioPorDia);//Setear el precio de renta del auto inicial
+            $("#txtPrecioDiaRenta").val(response[0].precioPorDia.toFixed(2));//Setear el precio de renta del auto inicial
         },
 		error : function(err){
 			console.error(err);
@@ -183,6 +183,8 @@ $(function(){
     $("#btnRegistrarRenta").click(function(){
         if(!validarCampos() && !verificarRangoFechas()){
             save();
+            actualizarEstadoAutomovil();
+            limpiarCampos();
         }else if(verificarRangoFechas()){
             Swal.fire({
                 icon: 'warning',
@@ -197,18 +199,6 @@ $(function(){
               });           
         }
     }); 
-
-    $("#btnVerificarFechaRenta").click(function(){
-        if(!verificarRangoFechas()){
-            calcularTotal();            
-        }else{
-            Swal.fire({
-                icon: 'warning',
-                title: 'Warning',
-                text: 'El rango de fecha es erroneo'
-              });                                   
-        }
-    });
 
     actualizarPrecio();
 });
@@ -264,15 +254,15 @@ function cambiarPrecioRenta(){
     let selectAutos = document.getElementById("txtAutomovilRenta");
     let indiceAuto;
 
-    let fechaInicial = $("#txtFechaInicioRenta").val();
-    let fechaFin = $("#txtFechaFinRenta").val();
-
     selectAutos.onchange = function(){
         indiceAuto = selectAutos.value;
-        $("#txtPrecioDiaRenta").val(listaAutomoviles[indiceAuto-1].precioPorDia);
-        if(fechaInicial == "" || fechaFin == ""){
-            calcularTotal();
-        }
+        listaAutomoviles.forEach(auto=>{
+            if(auto.codigoAutomovil == indiceAuto){
+                $("#txtPrecioDiaRenta").val(auto.precioPorDia.toFixed(2));                
+                calcularTotal();
+            }
+        });
+
     };
 }
 
@@ -298,4 +288,60 @@ function actualizarPrecio(){
     });
 }
 
+//Cambiar el estado de un auto a no disponible, después de la renta
+function actualizarEstadoAutomovil(){
+    let codigoAutomovil = $("#txtAutomovilRenta").val();
+    var automovil = serializeAutomovil();
+    var requestBody = JSON.stringify(automovil);
+    console.log(requestBody);
+    //Utilizar jQuery AJAX para enviar al Backend
+    $.ajax({        
+        type: "PUT", //Verbo de HTTP a utilizar
+        url: "http://localhost:8080/automovil/update/"+codigoAutomovil, //Dirección para realizar la petición HTTP
+        data: requestBody, //El contenido Body de la petición HTTP                
+        contentType : "application/json",
+        crossDomain: true,
+        dataType: "json",
+        success : function(response){
+            console.log(response);
+        },
+        error : function(err){
+        console.error(err);
+        },
+    });
+}
 
+
+function serializeAutomovil(){ 
+    let codigoAutomovil = $("#txtAutomovilRenta").val();
+    let marca,tipoAuto,numeroPlaca,color,listaAccesorios,precio;
+    listaAutomoviles.forEach(auto=>{
+        if(auto.codigoAutomovil == codigoAutomovil){
+            marca = auto.marca;
+            tipoAuto = auto.tipoAuto;
+            numeroPlaca = auto.numeroPlaca;
+            color = auto.color;
+            listaAccesorios = auto.listaAccesorios;
+            precio = auto.precioPorDia;
+        }
+    });
+
+    let automovil = {
+        "codigoAutomovil": codigoAutomovil,
+        "marca" : marca,       
+        "tipoAuto" : tipoAuto,
+        "numeroPlaca" : numeroPlaca, 
+        "color" : color,
+        "precioPorDia": precio,
+        "disponibilidad" : false,
+        "listaAccesorios": listaAccesorios,
+    };
+    return automovil;
+}
+
+function limpiarCampos(){
+    $("#txtTotalRenta").val("");
+    $("#txtPrecioDiaRenta").val("");
+    setearFecha();
+    $("#txtFechaFinRenta").val("");        
+}
