@@ -50,7 +50,6 @@ function list(){
 
 $(function(){    
     list();
-
 });
 
 

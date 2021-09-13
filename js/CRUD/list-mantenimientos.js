@@ -1,4 +1,6 @@
 let listaAutomoviles = [];
+let listaDetalleMantenimiento = [];
+// let indice;
 function showMantenimientos(list){
     $("#tblaMantenimientos").empty(); //Eliminar todo el contenido de la tabla
     let i = 1;
@@ -15,6 +17,9 @@ function showMantenimientos(list){
             + '<td>' + nuevaFechaFin[0] + '</td>'
             + '<td>' 
                 + '<button onclick ="retrieveDetalleMantenimiento('+ mantenimiento.codigoMantenimiento+'),setearNombreAutomovil('+mantenimiento.codigoMantenimiento+')" type = "button" class = "btn btn-primary" data-bs-toggle="modal" data-bs-target="#mdMantenimiento">Consultar</button>'            
+            + '</td>' 
+            + '<td>' 
+                + '<button onclick ="delMantenimiento('+ mantenimiento.codigoMantenimiento+')" type = "button" class = "btn btn-danger">Eliminar</button>'            
             + '</td>' 
         +'</tr>')    
         i++;
@@ -58,6 +63,38 @@ function copiarArreglo(array){
     }
 }
   
+function delMantenimiento(codigo){
+    $.ajax({        
+        type: "DELETE", //Verbo de HTTP a utilizar
+        url: "http://localhost:8080/mantenimiento/delete/" + codigo, //Dirección para realizar la petición HTTP        
+        contentType : "application/json",        
+        success : function(response){
+            console.log(response);    
+            listMantenimientos();
+		},
+		error : function(err){
+			console.error(err);
+		}        
+    });
+
+}
+
+function delDetalleMantenimiento(codigo){
+    $.ajax({        
+        type: "DELETE", //Verbo de HTTP a utilizar
+        url: "http://localhost:8080/detalle_mantenimiento/delete/" + codigo, //Dirección para realizar la petición HTTP        
+        contentType : "application/json",        
+        success : function(response){
+            console.log(response);                       
+            location.reload();
+		},
+		error : function(err){
+			console.error(err);
+		}        
+    });
+
+}
+
 
 function setearNombreAutomovil(codigo){
     console.log(listaAutomoviles);
@@ -81,6 +118,10 @@ function showDetalleMantenimientos(list){
             + '<td>' + i + '</td>'
             + '<td>' + detalleMantenimiento.nombre + '</td>'
             + '<td>' + detalleMantenimiento.descripcion + '</td>'
+            + '<td>' 
+                + '<button onclick ="delDetalleMantenimiento('+ detalleMantenimiento.codigoDetalleMantenimiento+')" type = "button" class = "btn btn-danger">Eliminar</button>'            
+            + '</td>' 
+
         +'</tr>')    
         i++;
     });
@@ -95,6 +136,7 @@ function retrieveDetalleMantenimiento(codigo){
         success : function(response){
             console.log(response);    
             showDetalleMantenimientos(response);                        
+            // listaDetalleMantenimiento = response;
         },
 		error : function(err){
 			console.error(err);
@@ -164,6 +206,11 @@ function cerrarPopupModalJuegos() {
     $('.modal-backdrop').remove();//eliminamos el backdrop del modal
 }
 
-
-
-        
+//Obtener la fila eliminada
+function obtenerFilaEliminar(){
+    let indice;
+    document.querySelector('#tblaDetalleMantenimientos').onclick = function(ev) {
+        indice = ev.target.parentElement.rowIndex;        
+    } 
+    return indice;       
+}

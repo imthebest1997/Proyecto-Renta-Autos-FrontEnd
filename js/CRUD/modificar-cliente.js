@@ -165,6 +165,10 @@ function save(){
                 title: 'Success',
                 text: 'Modificación realizada con exito!'
               })
+
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
 		},
 		error : function(err){
 			console.error(err);

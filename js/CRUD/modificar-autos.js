@@ -192,10 +192,13 @@ function save(codigo){
               title: 'Success',
               text: 'El automovil ha sido modificado correctamente!'
             });
-  },
-  error : function(err){
-    console.error(err);
-  },
+          setTimeout(() => {
+            location.reload();
+          }, 3000);            
+      },
+      error : function(err){
+        console.error(err);
+      },
   });
 }
 

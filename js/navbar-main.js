@@ -10,3 +10,4 @@ $(function() {
     console.log("Pagina lista");
     loadNavBar();
 });
+

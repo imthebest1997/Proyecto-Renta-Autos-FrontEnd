@@ -2,7 +2,6 @@ function show(list){
     let i = 1;
     $("#tblaAutomoviles").empty(); //Eliminar todo el contenido de la tabla
     list.forEach(automovil =>{      
-
         $("#tblaAutomoviles").append('<tr>' 
             + '<td>' + automovil.marca + '</td>'
             + '<td>' + automovil.tipoAuto + '</td>' 

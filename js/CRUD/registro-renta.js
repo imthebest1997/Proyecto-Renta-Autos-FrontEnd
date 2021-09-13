@@ -154,6 +154,10 @@ function save(){
                 title: 'Success',
                 text: 'El registro de la renta ha sido creado correctamente!'
               });
+              
+            setTimeout(() => {
+                location.reload();
+            },3000);
         },
     		error : function(err){
 			console.error(err);
@@ -247,7 +251,6 @@ function setearFecha(){
 
     let fechaActual = fecha.getFullYear()+"-"+mesActual+ "-" + diaActual;
     document.getElementById("txtFechaInicioRenta").value = fechaActual;  
-    console.log(fechaActual);
 }
 
 function cambiarPrecioRenta(){
