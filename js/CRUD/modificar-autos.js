@@ -254,23 +254,14 @@ function retrieve(codigo){
       success : function(response){
           console.log(response);    
           listAccesorios(response);
-          copiarArreglo(response.listaAccesorios);
-
+          listaAccesorios = [];
+          listaAccesorios = response.listaAccesorios;
         },
       error : function(err){
         console.error(err);
       }
   });
 }
-
-function copiarArreglo(array){
-  listaAccesorios = [];
-  let tam = array.length;
-  for(let i = 0;i<tam;i++){
-    listaAccesorios[i] = array[i];    
-  }
-}
-
 
 //Imprimir la tabla de accesorios db
 function listAccesorios(automovil){

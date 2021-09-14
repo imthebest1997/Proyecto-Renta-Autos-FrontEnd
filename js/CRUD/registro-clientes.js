@@ -10,7 +10,6 @@ function serializeForm(){
     return cliente;
 }
 
-
 function save(){
     var dataForm = serializeForm();
     console.log(dataForm);
@@ -147,4 +146,4 @@ function validarEmail() {
         return bandera;        
     }
     return bandera;
-  }
+}

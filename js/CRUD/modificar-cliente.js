@@ -56,12 +56,12 @@ function obtenerDatos(indice){
 }
 
 function limpiarCampos(){
-    document.getElementById("txtNombreCliente").value = '';       
-    document.getElementById("txtCedulaCliente").value = '';       
-    document.getElementById("txtTelefonoCliente").value = '';       
-    document.getElementById("txtCelularCliente").value = '';       
-    document.getElementById("txtCorreoElectronicoCliente").value = '';       
-    document.getElementById("txtNumeroLicenciaCliente").value = '';       
+    $("#txtNombreCliente").val("");       
+    $("#txtCedulaCliente").val("");       
+    $("#txtTelefonoCliente").val("");       
+    $("#txtCelularCliente").val("");       
+    $("txtCorreoElectronicoCliente").val("");       
+    $("txtNumeroLicenciaCliente").val("");       
 }
 
 function validarCampos(){

@@ -44,7 +44,7 @@ $(function() {
     $("#btnRegistrarAuto").click(function(){        
         precio_str = $("#txtPrecioDiaRentaAutomovil").val();
         precio = parseFloat(precio_str);    
-        if(!validarCampos() && precio>50){
+        if(!validarCampos() && precio>=25){
             save();  
             limpiarCampos();          
         }else if(validarCampos()){
@@ -89,8 +89,6 @@ function validarCampos(){
     }
     return bandera;
 }
-
-
 
 ///MODAL
 function validarCamposModal(){

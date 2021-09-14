@@ -24,78 +24,75 @@
             
             <div class="container" id="modulo-inicial">
                 <div class="row">
-                  <div class="col-6 row g-3">
-                    <div class="mb-3 col-6">
-                      <label for="txtAutomovilRenta" class="form-label"><b>Automovil:</b></label>
-                      <select name="txtAutomovilRenta" id="txtAutomovilRenta" class="form-select">
-                      </select>
-                    </div>
-
-                    <div class="mb-3 col-6">
-                      <label for="txtEmpleadoRenta" class="form-label"><b>Empleado responsable:</b></label>
-                      <select name="txtEmpleadoRenta" id="txtEmpleadoRenta" class="form-select">
-                      </select>
-                    </div>
-
-                    <div class="mb-3 col-6">
-                        <label for="txtClienteRenta" class="form-label"><b>Cliente:</b></label>
-                        <select name="txtClienteRenta" id="txtClienteRenta" class="form-select">
-                        </select>
-                    </div>
-
-
-                    <div class="mb-3 col-6">
-                      <label for="txtPrecioDiaRenta" class="form-label"><b>Precio por dia:</b></label>
-                      <input type="number" name="txtPrecioDiaRenta" id="txtPrecioDiaRenta" class="form-control" readonly>
-                    </div>
-
-
-                    <div class="mb-3 col-6">
-                      <label for="txtFechaInicioRenta" class="form-label"><b>Fecha de Inicio:</b></label>
-                      <input type="date" name="txtFechaInicioRenta" id="txtFechaInicioRenta" class="form-control">
-                    </div>
-
-                    <div class="mb-3 col-6">
-                      <label for="txtFechaFinRenta" class="form-label"><b>Fecha de Fin:</b></label>
-                      <input type="date" name="txtFechaFinRenta" id="txtFechaFinRenta" class="form-control">
-                    </div>
-
-                    <div class="mb-3 col-6">
-                      <label for="txtTotalRenta" class="form-label"><b>Total:</b></label>
-                      <input type="number" name="txtTotalRenta" id="txtTotalRenta" class="form-control" min="50" readonly>
-                    </div>
-
-
-                  </div>
-
                   <div class="col-6">
-                      <div id="carouselImagenesRenta" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <div class="carousel-image">
-                              <img src="../../images/renta de autos - 1.jpg" class="d-block w-100" alt="...">
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../../images/renta de autos - 2.jpg" class="d-block w-100" alt="...">
-                          </div>
-                          <div class="carousel-item">
-                            <img src="../../images/renta de autos - 3.jpg" class="d-block w-100" alt="...">
+                    <form class="row g-3" method="POST">
+                      <div class="mb-3 col-6">
+                        <label for="txtAutomovilRenta" class="form-label"><b>Automovil:</b></label>
+                        <select name="txtAutomovilRenta" id="txtAutomovilRenta" class="form-select">
+                        </select>
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="txtEmpleadoRenta" class="form-label"><b>Empleado responsable:</b></label>
+                        <select name="txtEmpleadoRenta" id="txtEmpleadoRenta" class="form-select">
+                        </select>
+                      </div>
+
+                      <div class="mb-3 col-6">
+                          <label for="txtClienteRenta" class="form-label"><b>Cliente:</b></label>
+                          <select name="txtClienteRenta" id="txtClienteRenta" class="form-select">
+                          </select>
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="txtPrecioDiaRenta" class="form-label"><b>Precio por dia:</b></label>
+                        <input type="number" name="txtPrecioDiaRenta" id="txtPrecioDiaRenta" class="form-control" readonly>
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="txtFechaInicioRenta" class="form-label"><b>Fecha de Inicio:</b></label>
+                        <input type="date" name="txtFechaInicioRenta" id="txtFechaInicioRenta" class="form-control">
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="txtFechaFinRenta" class="form-label"><b>Fecha de Fin:</b></label>
+                        <input type="date" name="txtFechaFinRenta" id="txtFechaFinRenta" class="form-control">
+                      </div>
+
+                      <div class="mb-3 col-6">
+                        <label for="txtTotalRenta" class="form-label"><b>Total:</b></label>
+                        <input type="number" name="txtTotalRenta" id="txtTotalRenta" class="form-control" min="50" readonly>
+                      </div>
+                  </form>
+                </div>
+
+                <div class="col-6">
+                    <div id="carouselImagenesRenta" class="carousel slide" data-bs-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <div class="carousel-image">
+                            <img src="../../images/renta de autos - 1.jpg" class="d-block w-100" alt="...">
                           </div>
                         </div>
+                        <div class="carousel-item">
+                          <img src="../../images/renta de autos - 2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="../../images/renta de autos - 3.jpg" class="d-block w-100" alt="...">
+                        </div>
                       </div>
-                  </div>
+                    </div>
                 </div>
+              </div>
+              <button class="btn btn-success" id="btnRegistrarRenta">Registrar</button>
 
-                <button class="btn btn-success" id="btnRegistrarRenta">Registrar</button>
-
-                <div class="btn-regresar m-4">
-                  <a href="renta-automoviles.html" class="btn btn-danger">Regresar</a>
-                </div>
-            </div>
-        </main>
-    </div>
+              <div class="btn-regresar m-4">
+                <a href="renta-automoviles.html" class="btn btn-danger">Regresar</a>
+              </div>
+          </div>
+      </main>
   </div>
+</div>
 
   <script src="../../js/jquery-3.6.0.min.js"></script>      
   <script src="../../js/sweetalert2.all.min.js"></script>
