@@ -1,5 +1,4 @@
 // Busqueda en tiempo real
-  
 let arregloGeneral = [];
 function contarrows(nombreTabla){
     var i=0;
@@ -7,20 +6,21 @@ function contarrows(nombreTabla){
     var total = tabla.rows.length;
     
     for(j=1;j<=total-1;j++){
-        let codigoEmpleado = tabla.rows[j].cells[0].childNodes[0].nodeValue;;
+        let codigoEmpleado = tabla.rows[j].cells[0].childNodes[0].nodeValue;
         let dato = tabla.rows[j].cells[1].childNodes[0].nodeValue;
-        let dato_2=tabla.rows[j].cells[2].childNodes[0].nodeValue;
-        let dato_3=tabla.rows[j].cells[3].childNodes[0].nodeValue;
-        let dato_4=tabla.rows[j].cells[4].childNodes[0].nodeValue;
-        let dato_5=tabla.rows[j].cells[5].childNodes[0].nodeValue;
-
-       let cliente = {
+        let dato_2 = tabla.rows[j].cells[2].childNodes[0].nodeValue;
+        let dato_3 = tabla.rows[j].cells[3].childNodes[0].nodeValue;
+        let dato_4 = tabla.rows[j].cells[4].childNodes[0].nodeValue;
+        let dato_5 = tabla.rows[j].cells[5].childNodes[0].nodeValue;
+        let dato_6 = tabla.rows[j].cells[6].childNodes[0].nodeValue;        
+        let cliente = {
             "codigoEmpleado": codigoEmpleado,
             "nombre" : dato,       
             "cedula" : dato_2,
             "telefono" : dato_3, 
             "celular" : dato_4,
             "correoElectronico" : dato_5,
+            "numAutosRentados": dato_6,
         };
     
         arregloGeneral[i]=cliente;
@@ -43,25 +43,27 @@ function obtenerDatos(indice){
     let cedula = cliente[indice-1].cedula;
     let telefono = cliente[indice-1].telefono;
     let celular = cliente[indice-1].celular;
+    let numAutosRentados = cliente[indice-1].numAutosRentados;
     let correoElectronico = cliente[indice-1].correoElectronico;
 
     
-    document.getElementById("txtCodigoEmpleado").value = codigo;    
-    document.getElementById("txtNombreEmpleado").value = nombre;       
-    document.getElementById("txtCedulaEmpleado").value = cedula;       
-    document.getElementById("txtTelefonoEmpleado").value = telefono;       
-    document.getElementById("txtCelularEmpleado").value = celular;       
-    document.getElementById("txtCorreoElectronicoEmpleado").value = correoElectronico;       
-
+    $("#txtCodigoEmpleado").val(codigo);    
+    $("#txtNombreEmpleado").val(nombre);       
+    $("#txtCedulaEmpleado").val(cedula);       
+    $("#txtTelefonoEmpleado").val(telefono);       
+    $("#txtCelularEmpleado").val(celular);       
+    $("#txtCorreoElectronicoEmpleado").val(correoElectronico);       
+    $("#txtAutosRentadosEmpleado").val(numAutosRentados);
 }
 
 function limpiarCampos(){
-    document.getElementById("txtNombreEmpleado").value = '';       
-    document.getElementById("txtCedulaEmpleado").value = '';       
-    document.getElementById("txtTelefonoEmpleado").value = '';       
-    document.getElementById("txtCelularEmpleado").value = '';       
-    document.getElementById("txtCorreoElectronicoEmpleado").value = '';       
-    document.getElementById("txtNumeroLicenciaEmpleado").value = '';       
+    $("#txtNombreEmpleado").val("");       
+    $("#txtCedulaEmpleado").val("");       
+    $("#txtTelefonoEmpleado").val("");       
+    $("#txtCelularEmpleado").val("");       
+    $("#txtCorreoElectronicoEmpleado").val("");       
+    $("#txtAutosRentadosEmpleado").val("");
+    $("#txtAutosRentadosEmpleado").val("");    
 }
 
 function validarCampos(){
@@ -136,7 +138,8 @@ function serializeForm(){
         "telefono" : $("#txtTelefonoEmpleado").val(), 
         "celular" : $("#txtCelularEmpleado").val(),
         "correoElectronico" : $("#txtCorreoElectronicoEmpleado").val(),
-        "codigoEmpleado": $("#txtCodigoEmpleado").val()
+        "codigoEmpleado": $("#txtCodigoEmpleado").val(),
+        "numeroAutosRentados": $("#txtAutosRentadosEmpleado").val()
     };
     return empleado;
 }
@@ -211,7 +214,6 @@ $(function() {
 
 
 function show(list){
-    let i = 1;
     $("#tblaEmpleados").empty(); //Eliminar todo el contenido de la tabla
     list.forEach(empleado =>{        
         $("#tblaEmpleados").append('<tr>' 
@@ -223,7 +225,6 @@ function show(list){
             + '<td>' + empleado.correoElectronico + '</td>'
             + '<td>' + empleado.numeroAutosRentados + '</td>' 
         +'</tr>')    
-        i++;
     });
 }
 

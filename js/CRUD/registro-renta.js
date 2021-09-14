@@ -1,5 +1,6 @@
 let listaClientes = [];
 let listaAutomoviles = [];
+let listaEmpleados = [];
 let fechas = [];
 
 // Lista de autos disponibles para cargarlo al select 
@@ -33,7 +34,6 @@ function listByDisponibilidad(disponibilidad){
         
     });
 }
-
 // Lista de empleados para cargarlo al select
 function listEmpleados(){
     $.ajax({
@@ -43,6 +43,7 @@ function listEmpleados(){
         dataType: "json",
         success : function(response){
             console.log(response);
+            listaEmpleados = response;
             cargarSelectEmpleados(response);
         },
 		error : function(err){
@@ -188,6 +189,7 @@ $(function(){
         if(!validarCampos() && !verificarRangoFechas()){
             save();
             actualizarEstadoAutomovil();
+            actualizarAutosRentadosCliente();
             limpiarCampos();
         }else if(verificarRangoFechas()){
             Swal.fire({
@@ -314,6 +316,29 @@ function actualizarEstadoAutomovil(){
     });
 }
 
+function actualizarAutosRentadosCliente(){
+    let codigoEmpleado = $("#txtEmpleadoRenta").val();
+    var empleado = serializeEmpleado();
+    var requestBody = JSON.stringify(empleado);
+    console.log(requestBody);
+    //Utilizar jQuery AJAX para enviar al Backend
+    $.ajax({        
+        type: "PUT", //Verbo de HTTP a utilizar
+        url: "http://localhost:8080/empleado/update/"+codigoEmpleado, //Dirección para realizar la petición HTTP
+        data: requestBody, //El contenido Body de la petición HTTP                
+        contentType : "application/json",
+        crossDomain: true,
+        dataType: "json",
+        success : function(response){
+            console.log(response);
+        },
+        error : function(err){
+        console.error(err);
+        },
+    });
+
+}
+
 
 function serializeAutomovil(){ 
     let codigoAutomovil = $("#txtAutomovilRenta").val();
@@ -340,6 +365,32 @@ function serializeAutomovil(){
         "listaAccesorios": listaAccesorios,
     };
     return automovil;
+}
+
+function serializeEmpleado(){ 
+    let codigoEmpleado = $("#txtEmpleadoRenta").val();
+    let nombre,cedula,telefono,celular,correoElectronico,numAutosRentados;
+    listaEmpleados.forEach(empleado=>{
+        if(empleado.codigoEmpleado == codigoEmpleado){
+            nombre = empleado.nombre;
+            cedula = empleado.cedula;
+            telefono = empleado.telefono;
+            celular = empleado.celular;
+            correoElectronico = empleado.correoElectronico;
+            numAutosRentados = empleado.numeroAutosRentados + 1
+        }
+    });
+
+    let empleado = {
+        "nombre" : nombre,       
+        "cedula" : cedula,
+        "telefono" : telefono, 
+        "celular" : celular,
+        "correoElectronico" : correoElectronico,
+        "numeroAutosRentados": numAutosRentados
+    };
+
+    return empleado;
 }
 
 function limpiarCampos(){

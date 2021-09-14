@@ -5,11 +5,9 @@ function serializeForm(){
         "telefono" : $("#txtTelefonoEmpleado").val(), 
         "celular" : $("#txtCelularEmpleado").val(),
         "correoElectronico" : $("#txtCorreoElectronicoEmpleado").val(),
-
     };
     return empleado;
 }
-
 
 function save(){
     var dataForm = serializeForm();
@@ -146,4 +144,4 @@ function validarEmail() {
         return bandera;        
     }
     return bandera;
-  }
+}
